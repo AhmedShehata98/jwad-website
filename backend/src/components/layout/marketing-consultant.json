@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_layout_marketing_consultants",
+  "info": {
+    "displayName": "marketing_consultant"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "text"
+    },
+    "subheading": {
+      "type": "text"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

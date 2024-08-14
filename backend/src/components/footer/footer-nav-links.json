@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_footer_footer_nav_links",
+  "info": {
+    "displayName": "footer_nav_links"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "link.hero-descover-link"
+    }
+  }
+}

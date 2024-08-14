@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "marketing_consultants",
+  "info": {
+    "singularName": "marketing-consultant",
+    "pluralName": "marketing-consultants",
+    "displayName": "marketing_consultant",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "subheading": {
+      "type": "string"
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "layout.marketing-consultant"
+      ]
+    },
+    "section_id": {
+      "type": "string"
+    }
+  }
+}

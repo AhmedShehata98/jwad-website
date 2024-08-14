@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "upperbars",
+  "info": {
+    "singularName": "upperbar",
+    "pluralName": "upperbars",
+    "displayName": "upperbar"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "contact_phone": {
+      "type": "string"
+    },
+    "working_days": {
+      "type": "string"
+    }
+  }
+}

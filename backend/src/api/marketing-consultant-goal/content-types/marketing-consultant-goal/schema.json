@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "marketing_consultant_goals",
+  "info": {
+    "singularName": "marketing-consultant-goal",
+    "pluralName": "marketing-consultant-goals",
+    "displayName": "marketing_consultant_goal"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "option": {
+      "type": "string"
+    }
+  }
+}

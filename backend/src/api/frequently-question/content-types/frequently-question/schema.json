@@ -1,0 +1,22 @@
+{
+  "kind": "singleType",
+  "collectionName": "frequently_questions",
+  "info": {
+    "singularName": "frequently-question",
+    "pluralName": "frequently-questions",
+    "displayName": "frequently_question",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "section_id": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "hero_marketing_services",
+  "info": {
+    "singularName": "hero-marketing-service",
+    "pluralName": "hero-marketing-services",
+    "displayName": "marketing_services",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "subHeading": {
+      "type": "string"
+    },
+    "link": {
+      "type": "dynamiczone",
+      "components": [
+        "link.hero-descover-link"
+      ]
+    },
+    "section_id": {
+      "type": "string"
+    }
+  }
+}

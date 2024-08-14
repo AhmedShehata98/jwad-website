@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "portfolio_lists",
+  "info": {
+    "singularName": "portfolio-list",
+    "pluralName": "portfolio-lists",
+    "displayName": "portfolio_list",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "link": {
+      "type": "dynamiczone",
+      "components": [
+        "link.hero-descover-link"
+      ]
+    },
+    "image": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "video": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "videos"
+      ]
+    },
+    "category": {
+      "type": "string"
+    },
+    "video_thumbnail": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

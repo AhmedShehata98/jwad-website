@@ -1,0 +1,50 @@
+{
+  "kind": "singleType",
+  "collectionName": "contact_uses",
+  "info": {
+    "singularName": "contact-us",
+    "pluralName": "contact-uses",
+    "displayName": "contact_us",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "contact_form": {
+      "type": "dynamiczone",
+      "components": [
+        "form.input"
+      ]
+    },
+    "send": {
+      "type": "dynamiczone",
+      "components": [
+        "button.action-btn"
+      ]
+    },
+    "contact_list_heading": {
+      "type": "string"
+    },
+    "form_heading": {
+      "type": "string"
+    },
+    "section_id": {
+      "type": "string"
+    },
+    "contact_list": {
+      "type": "component",
+      "repeatable": true,
+      "component": "contact-us.contact-us-contact"
+    },
+    "social_media": {
+      "type": "component",
+      "repeatable": true,
+      "component": "link.advanced-link"
+    }
+  }
+}

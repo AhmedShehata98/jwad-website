@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "tiktok_pixel_configs",
+  "info": {
+    "singularName": "tiktok-pixel-config",
+    "pluralName": "tiktok-pixel-configs",
+    "displayName": "tiktok_pixel_config"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "pixel_id": {
+      "type": "string"
+    }
+  }
+}

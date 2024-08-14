@@ -1,0 +1,22 @@
+{
+  "kind": "singleType",
+  "collectionName": "snapchat_pixel_configs",
+  "info": {
+    "singularName": "snapchat-pixel-config",
+    "pluralName": "snapchat-pixel-configs",
+    "displayName": "snapchat_pixel_config",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "pixel_id": {
+      "type": "string"
+    },
+    "user_email": {
+      "type": "string"
+    }
+  }
+}

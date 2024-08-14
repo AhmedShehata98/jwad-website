@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "headerbars",
+  "info": {
+    "singularName": "headerbar",
+    "pluralName": "headerbars",
+    "displayName": "navlinks",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "navlink": {
+      "type": "string"
+    },
+    "href": {
+      "type": "string"
+    }
+  }
+}

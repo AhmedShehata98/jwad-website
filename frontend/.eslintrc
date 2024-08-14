@@ -1,0 +1,12 @@
+{
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "plugins": ["react"],
+    "rules": {
+        "react/jsx-key": "error",
+    },
+    "settings": {
+        "react": {
+            "version": "detect",
+        },
+    },
+}

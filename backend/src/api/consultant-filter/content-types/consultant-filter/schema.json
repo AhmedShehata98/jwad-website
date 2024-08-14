@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "consultant_filters",
+  "info": {
+    "singularName": "consultant-filter",
+    "pluralName": "consultant-filters",
+    "displayName": "consultant_filter"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "normalized": {
+      "type": "string"
+    }
+  }
+}

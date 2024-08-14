@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_button_action_btns",
+  "info": {
+    "displayName": "action_btn",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "snapchat_event": {
+      "type": "string"
+    },
+    "fb_event": {
+      "type": "string"
+    },
+    "tiktok_event": {
+      "type": "string"
+    }
+  }
+}

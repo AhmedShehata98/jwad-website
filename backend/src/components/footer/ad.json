@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_footer_ads",
+  "info": {
+    "displayName": "ad"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "icon": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

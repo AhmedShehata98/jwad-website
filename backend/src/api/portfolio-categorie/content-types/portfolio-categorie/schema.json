@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "portfolio_categories",
+  "info": {
+    "singularName": "portfolio-categorie",
+    "pluralName": "portfolio-categories",
+    "displayName": "portfolio_category",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "normalize": {
+      "type": "string"
+    }
+  }
+}

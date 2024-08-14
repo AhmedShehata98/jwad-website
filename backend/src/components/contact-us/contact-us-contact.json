@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_contact_us_contact_us_contacts",
+  "info": {
+    "displayName": "contact_us_contact"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "upperbar_socials",
+  "info": {
+    "singularName": "upperbar-social",
+    "pluralName": "upperbar-socials",
+    "displayName": "upperbar_social"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "href": {
+      "type": "string"
+    },
+    "icon": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

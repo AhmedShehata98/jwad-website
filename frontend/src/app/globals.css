@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '~react-image-gallery/styles/css/image-gallery.css';
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+@layer components {
+    .app-container {
+        width: calc(100% - 8rem);
+        margin-inline: auto;
+        padding-inline: 2rem;
+    }
+    @media (max-width: 992px) {
+        .app-container {
+            width: calc(100% - 3rem);
+        }
+    }
+    @media (max-width: 768px) {
+        .app-container {
+            width: calc(100% - 2.5rem);
+        }
+    }
+    @media (max-width: 640px) {
+        .app-container {
+            width: calc(100% - 1rem);
+            padding-inline: 1rem;
+        }
+    }
+    .prevent-body-scroll {
+        @apply fixed overflow-hidden;
+    }
+    .app-header {
+        @apply app-container relative flex items-center justify-center py-2 after:absolute after:bottom-0 after:left-1/2 after:h-4 after:w-[calc(100%+1rem)] after:-translate-x-1/2 after:border-b after:border-b-[#ADADB1] after:content-[''] max-md:py-4 after:md:w-[calc(100%+2.5rem)] after:lg:w-[calc(100%+3rem)] after:xl:w-[calc(100%+8rem)];
+    }
+    .nav-links-mobile {
+        @apply max-lg:pointer-events-none max-lg:fixed max-lg:left-0 max-lg:top-0 max-lg:z-30 max-lg:h-full max-lg:w-full max-lg:-translate-x-full max-lg:scale-90 max-lg:flex-col max-lg:bg-mainWhite;
+    }
+    .nav-links-mobile-shown {
+        @apply max-lg:pointer-events-auto max-lg:translate-x-0 max-lg:scale-100;
+    }
+    .btn {
+        @apply flex items-center justify-center gap-3 rounded-xl border-4 border-mainWhite bg-secondary text-mainWhite outline outline-secondary hover:rounded-full hover:transition-all hover:duration-300;
+    }
+    .portfolio-filter {
+        @apply mt-7 flex snap-x snap-mandatory snap-start items-center justify-start gap-5 overflow-x-auto overflow-y-hidden max-sm:py-4;
+    }
+    .portfolio-list {
+        @apply my-12 grid w-full grid-cols-1 gap-5 max-md:mt-0 md:grid-cols-2;
+    }
+    .portfolio-card {
+        @apply relative flex flex-col items-start justify-center overflow-hidden rounded-xl bg-gray-200 transition-transform;
+    }
+    .portfolio-gallery-card {
+        @apply relative flex flex-col items-start justify-center overflow-hidden rounded-xl bg-gray-200;
+    }
+    .portfolio-video-card {
+        @apply relative flex flex-col items-start justify-center overflow-hidden rounded-xl bg-gray-200 transition-transform;
+    }
+
+    .navigation-list {
+        @apply flex items-center justify-center gap-4 max-md:w-full max-md:flex-col;
+    }
+
+    .nav-link {
+        @apply relative inline-block py-2 after:absolute after:bottom-0 after:left-1/2 after:h-1 after:w-0 after:-translate-x-1/2 after:overflow-hidden after:rounded-lg after:bg-darkBlack after:transition-all after:content-[''] hover:after:w-full;
+    }
+    .nav-link__active {
+        @apply after:w-full;
+    }
+    .loader {
+        width: 48px;
+        height: 48px;
+        background: #fff;
+        border-radius: 50%;
+        position: relative;
+        animation: skLinRotate 1s ease-in-out infinite alternate;
+    }
+    .loader:after {
+        content: '';
+        position: absolute;
+        inset: 5px;
+        border-radius: 50%;
+        border: 5px solid transparent;
+        @apply border-t-secondary;
+    }
+}
+
+/* loader animations started */
+@keyframes skLinRotate {
+    95%,
+    100% {
+        transform: rotate(840deg);
+    }
+}

@@ -1,0 +1,26 @@
+{
+  "kind": "singleType",
+  "collectionName": "app_metas",
+  "info": {
+    "singularName": "app-meta",
+    "pluralName": "app-metas",
+    "displayName": "app_meta",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "social_media_meta": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.meta-social"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

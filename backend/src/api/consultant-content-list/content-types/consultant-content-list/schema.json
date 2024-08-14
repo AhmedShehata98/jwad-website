@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "consultant_content_lists",
+  "info": {
+    "singularName": "consultant-content-list",
+    "pluralName": "consultant-content-lists",
+    "displayName": "consultant_content_list",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "text"
+    },
+    "extras": {
+      "type": "text"
+    },
+    "consultant_filter": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::consultant-filter.consultant-filter"
+    }
+  }
+}

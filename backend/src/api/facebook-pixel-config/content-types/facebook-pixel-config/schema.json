@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "facebook_pixel_configs",
+  "info": {
+    "singularName": "facebook-pixel-config",
+    "pluralName": "facebook-pixel-configs",
+    "displayName": "facebook_pixel_config"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "pixel_id": {
+      "type": "string"
+    }
+  }
+}

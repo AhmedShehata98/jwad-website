@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "partners_lists",
+  "info": {
+    "singularName": "partners-list",
+    "pluralName": "partners-lists",
+    "displayName": "partners_list"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

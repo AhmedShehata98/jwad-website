@@ -1,0 +1,46 @@
+{
+  "kind": "singleType",
+  "collectionName": "your_dream_projects",
+  "info": {
+    "singularName": "your-dream-project",
+    "pluralName": "your-dream-projects",
+    "displayName": "Your_dream_project",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "subHeading": {
+      "type": "text"
+    },
+    "link": {
+      "type": "dynamiczone",
+      "components": [
+        "link.hero-descover-link"
+      ]
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "section_id": {
+      "type": "string"
+    },
+    "pattern_image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

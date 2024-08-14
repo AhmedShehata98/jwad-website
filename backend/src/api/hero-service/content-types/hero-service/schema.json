@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hero_services",
+  "info": {
+    "singularName": "hero-service",
+    "pluralName": "hero-services",
+    "displayName": "hero_service"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "icon": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
