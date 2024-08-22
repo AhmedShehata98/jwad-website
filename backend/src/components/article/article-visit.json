@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_article_article_visits",
+  "info": {
+    "displayName": "article-visit"
+  },
+  "options": {},
+  "attributes": {
+    "ip_address": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "time_zone": {
+      "type": "string"
+    }
+  }
+}

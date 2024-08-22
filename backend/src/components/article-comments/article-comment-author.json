@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_article_comments_article_comment_authors",
+  "info": {
+    "displayName": "article-comment-author"
+  },
+  "options": {},
+  "attributes": {
+    "author_id": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "full_name": {
+      "type": "string"
+    }
+  }
+}

@@ -1,4 +1,5 @@
 'use client';
+import { usePathname } from 'next/navigation';
 import NavLink from './NavLink';
 import useHashChange from '@/app/hooks/useHashChange';
 
@@ -7,13 +8,15 @@ type Props = {
 };
 function NavigationLinks({ links }: Props) {
     const hash = useHashChange();
+    const pathname = usePathname();
 
     return (
         <nav className="navigation-list">
             {links?.map((link) => {
                 const isActive =
-                    (link.attributes.href === '/' && hash === '') ||
-                    hash.endsWith(link.attributes.href);
+                    (pathname.endsWith(link.attributes.href) && hash === '') ||
+                    hash.endsWith(link.attributes.href) ||
+                    pathname.endsWith(link.attributes.href);
                 return (
                     <NavLink
                         key={link.id}

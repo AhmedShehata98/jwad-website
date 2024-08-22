@@ -99,11 +99,14 @@ export interface FormInput extends Schema.Component {
   collectionName: 'components_form_inputs';
   info: {
     displayName: 'input';
+    description: '';
   };
   attributes: {
-    label: Attribute.String;
-    placeholder: Attribute.String;
-    type: Attribute.String;
+    message: Attribute.Text;
+    blockedThread: Attribute.Boolean & Attribute.DefaultTo<false>;
+    approvalStatus: Attribute.Enumeration<['APPROVED', 'REJECTED', 'PENDING']> &
+      Attribute.DefaultTo<'PENDING'>;
+    author: Attribute.Component<'article-comments.article-comment-author'>;
   };
 }
 
@@ -140,6 +143,28 @@ export interface ContactUsContactUsContact extends Schema.Component {
   };
 }
 
+export interface ComponentsCoordination extends Schema.Component {
+  collectionName: 'components_components_coordinations';
+  info: {
+    displayName: 'coordination';
+    description: '';
+  };
+  attributes: {
+    latitude: Attribute.String;
+    longitude: Attribute.String;
+  };
+}
+
+export interface ButtonStandardButton extends Schema.Component {
+  collectionName: 'components_button_standard_buttons';
+  info: {
+    displayName: 'standard-button';
+  };
+  attributes: {
+    label: Attribute.String;
+  };
+}
+
 export interface ButtonActionBtn extends Schema.Component {
   collectionName: 'components_button_action_btns';
   info: {
@@ -151,6 +176,58 @@ export interface ButtonActionBtn extends Schema.Component {
     snapchat_event: Attribute.String;
     fb_event: Attribute.String;
     tiktok_event: Attribute.String;
+  };
+}
+
+export interface BlogArticleId extends Schema.Component {
+  collectionName: 'components_blog_article_ids';
+  info: {
+    displayName: 'article_Id';
+  };
+  attributes: {
+    identifier: Attribute.String;
+  };
+}
+
+export interface ArticleCommentsComment extends Schema.Component {
+  collectionName: 'components_article_comments_comments';
+  info: {
+    displayName: 'comment';
+    description: '';
+  };
+  attributes: {
+    message: Attribute.Text;
+    blockedThread: Attribute.Boolean & Attribute.DefaultTo<false>;
+    approvalStatus: Attribute.Enumeration<['APPROVED', 'REJECTED', 'PENDING']> &
+      Attribute.DefaultTo<'PENDING'>;
+    author: Attribute.Component<'article-comments.article-comment-author'>;
+    replay_at: Attribute.DateTime;
+  };
+}
+
+export interface ArticleCommentsArticleCommentAuthor extends Schema.Component {
+  collectionName: 'components_article_comments_article_comment_authors';
+  info: {
+    displayName: 'article-comment-author';
+  };
+  attributes: {
+    author_id: Attribute.String;
+    email: Attribute.String;
+    phone: Attribute.String;
+    full_name: Attribute.String;
+  };
+}
+
+export interface ArticleArticleVisit extends Schema.Component {
+  collectionName: 'components_article_article_visits';
+  info: {
+    displayName: 'article-visit';
+  };
+  attributes: {
+    ip_address: Attribute.String;
+    city: Attribute.String;
+    country: Attribute.String;
+    time_zone: Attribute.String;
   };
 }
 
@@ -166,7 +243,13 @@ declare module '@strapi/types' {
       'footer.footer-nav-links': FooterFooterNavLinks;
       'footer.ad': FooterAd;
       'contact-us.contact-us-contact': ContactUsContactUsContact;
+      'components.coordination': ComponentsCoordination;
+      'button.standard-button': ButtonStandardButton;
       'button.action-btn': ButtonActionBtn;
+      'blog.article-id': BlogArticleId;
+      'article-comments.comment': ArticleCommentsComment;
+      'article-comments.article-comment-author': ArticleCommentsArticleCommentAuthor;
+      'article.article-visit': ArticleArticleVisit;
     }
   }
 }

@@ -10,7 +10,7 @@ async function WhatsappBtn() {
             href={headerItems.data.attributes.cta_btn?.[0].href}
             target="_blank"
             rel="noopener noreferrer"
-            className="fixed bottom-10 left-6 z-30 shadow-2xl"
+            className="fixed bottom-10 left-6 z-30 shadow-2xl max-tablet:bottom-28 max-md:w-14"
         >
             <Image
                 src={'/icons/whatsapp.png'}

@@ -1,0 +1,41 @@
+import { IStrapiLinkResponse } from '@/types/common-types';
+import Link from 'next/link';
+import React from 'react';
+import CommentCreateForm from './CommentCreateForm';
+import { IComment } from '@/types/article';
+import CommentsList from './CommentsList';
+import ArticleControls from './ArticleControls';
+import TagsList from './TagsList';
+
+type Props = {
+    tags: Array<IStrapiLinkResponse>;
+    comments: IComment[] | undefined;
+    articleId: string;
+    commentsLength: number | undefined;
+    revalidateArticleComments: () => void;
+};
+function Footer({
+    tags,
+    comments,
+    articleId,
+    commentsLength,
+    revalidateArticleComments,
+}: Props) {
+    return (
+        <div className="mt-12 flex w-full flex-col items-start">
+            <TagsList tags={tags} />
+            <ArticleControls
+                className="mb-12"
+                articleId={articleId}
+                onOpenComments={() => {}}
+                commentsLength={commentsLength}
+            />
+            <CommentCreateForm
+                revalidateArticleComments={revalidateArticleComments}
+            />
+            <CommentsList comments={comments} />
+        </div>
+    );
+}
+
+export default Footer;

@@ -51,7 +51,7 @@ const Footer = async () => {
                         )}
                     </ul>
                 </div>
-                <div className="flex w-full items-start justify-start gap-16 max-md:flex-col max-md:items-center max-md:justify-between max-sm:gap-8">
+                <div className="flex w-full items-start justify-start gap-16 max-md:flex-col max-md:justify-between max-sm:gap-8">
                     {footer.data.attributes.navigation_links?.map((link) => {
                         return (
                             <div

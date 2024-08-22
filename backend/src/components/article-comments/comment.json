@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_article_comments_comments",
+  "info": {
+    "displayName": "comment",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "message": {
+      "type": "text"
+    },
+    "blockedThread": {
+      "type": "boolean",
+      "default": false
+    },
+    "approvalStatus": {
+      "type": "enumeration",
+      "enum": [
+        "APPROVED",
+        "REJECTED",
+        "PENDING"
+      ],
+      "default": "PENDING"
+    },
+    "author": {
+      "type": "component",
+      "repeatable": false,
+      "component": "article-comments.article-comment-author"
+    },
+    "replay_at": {
+      "type": "datetime"
+    }
+  }
+}

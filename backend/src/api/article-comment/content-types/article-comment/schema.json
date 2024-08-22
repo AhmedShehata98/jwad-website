@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "article_comments",
+  "info": {
+    "singularName": "article-comment",
+    "pluralName": "article-comments",
+    "displayName": "article_comments",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "comments": {
+      "type": "customField",
+      "customField": "plugin::comments.comments"
+    },
+    "message": {
+      "type": "text",
+      "required": true
+    },
+    "article_id": {
+      "required": true,
+      "default": -1,
+      "type": "integer"
+    },
+    "thread_of": {
+      "type": "string"
+    },
+    "blockedThread": {
+      "type": "boolean",
+      "default": false
+    },
+    "approvalStatus": {
+      "type": "enumeration",
+      "enum": [
+        "APPROVED",
+        "REJECTED",
+        "PENDING"
+      ],
+      "default": "PENDING"
+    },
+    "author": {
+      "displayName": "article-comment-author",
+      "type": "component",
+      "repeatable": false,
+      "component": "article-comments.article-comment-author"
+    },
+    "replay": {
+      "type": "component",
+      "repeatable": false,
+      "component": "article-comments.comment"
+    }
+  }
+}

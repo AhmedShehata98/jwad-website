@@ -9,8 +9,13 @@ import SnapchatPixel from '@/components/SnapchatPixel';
 import TikTokPixel from '@/components/TikTokPixel';
 import WhatsappBtn from '@/components/WhatsappBtn';
 import StructuredDataMetadata from '@/components/StructuredDataMetadata';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const rubik = Rubik({ subsets: ['latin'] });
+const rubik = Rubik({
+    subsets: ['latin'],
+    weight: ['300', '400', '500', '600', '700', '800', '900'],
+});
 
 export const metadata: Metadata = {
     title: 'Jwad',
@@ -25,6 +30,13 @@ export default async function RootLayout({
         <html lang="ar" dir="rtl">
             <body className={rubik.className}>
                 <div id="modal"></div>
+                <ToastContainer
+                    theme="light"
+                    position="bottom-right"
+                    rtl
+                    stacked
+                    autoClose={4000}
+                />
                 <StructuredDataMetadata />
                 <FacebookPixel />
                 <SnapchatPixel />

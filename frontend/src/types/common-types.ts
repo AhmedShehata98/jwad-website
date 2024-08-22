@@ -50,3 +50,12 @@ export interface IPixels {
         publishedAt: string;
     };
 }
+
+export interface IRichText {
+    type: string;
+    format: string;
+    children: {
+        type: string;
+        children: { text: string; type: string }[];
+    }[];
+}

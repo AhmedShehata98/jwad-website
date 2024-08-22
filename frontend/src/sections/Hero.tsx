@@ -1,14 +1,9 @@
 import AppAnchor from '@/components/AppAnchor';
 import HeroVideoBtn from '@/components/HeroVideoBtn';
-import {
-    getAllHeroStatistics,
-    getHeroItems,
-    getYourDreamProject,
-} from '@/services/api';
+import { getAllHeroStatistics, getHeroItems } from '@/services/api';
 import { imagePrefixURl } from '@/utils/image-prefix';
 import { twMerge } from '@jakxz/tw-classnames';
 import Image from 'next/image';
-import { FaRegCirclePlay } from 'react-icons/fa6';
 import { IoArrowBackOutline } from 'react-icons/io5';
 
 const Hero = async () => {
@@ -127,6 +122,7 @@ const Hero = async () => {
                         </div>
                     </div>
                 </div>
+
                 <ul className="mt-14 grid w-full grid-cols-1 gap-11 max-md:hidden sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                     {statisticsList.data?.map((statistic: any) => (
                         <li

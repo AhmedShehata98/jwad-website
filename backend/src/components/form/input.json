@@ -1,18 +1,31 @@
 {
   "collectionName": "components_form_inputs",
   "info": {
-    "displayName": "input"
+    "displayName": "input",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "label": {
-      "type": "string"
+    "message": {
+      "type": "text"
     },
-    "placeholder": {
-      "type": "string"
+    "blockedThread": {
+      "type": "boolean",
+      "default": false
     },
-    "type": {
-      "type": "string"
+    "approvalStatus": {
+      "type": "enumeration",
+      "enum": [
+        "APPROVED",
+        "REJECTED",
+        "PENDING"
+      ],
+      "default": "PENDING"
+    },
+    "author": {
+      "type": "component",
+      "repeatable": false,
+      "component": "article-comments.article-comment-author"
     }
   }
 }

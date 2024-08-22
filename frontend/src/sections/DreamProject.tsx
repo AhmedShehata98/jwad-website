@@ -2,6 +2,7 @@ import AppAnchor from '@/components/AppAnchor';
 import { getYourDreamProject } from '@/services/api';
 import { imagePrefixURl } from '@/utils/image-prefix';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 const DreamProject = async () => {
@@ -37,6 +38,7 @@ const DreamProject = async () => {
                 >
                     {yourDreamProject.data.attributes.link[0].label}
                 </AppAnchor>
+
             </span>
             <div className="relative">
                 <Image

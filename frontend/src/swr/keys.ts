@@ -1,3 +1,5 @@
+import { endpoints } from '@/services/api';
+
 export const swrKeys = {
     aboutSection: '/api/marketing-consultant',
     portfolioList: '/api/portfolio-lists',
@@ -7,4 +9,7 @@ export const swrKeys = {
     fbPixelConfig: '/api/facebook-pixel-config',
     snapchatPixelConfig: '/api/snapchat-pixel-config',
     tiktokPixelConfig: '/api/tiktok-pixel-config',
+    articleComments: endpoints.articleComments,
+    addArticleComments: `${endpoints.articleComments}-add`,
+    articlesList: endpoints.articles,
 };

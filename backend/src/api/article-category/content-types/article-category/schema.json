@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "article_categories",
+  "info": {
+    "singularName": "article-category",
+    "pluralName": "article-categories",
+    "displayName": "article_category"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "normalized_name": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}

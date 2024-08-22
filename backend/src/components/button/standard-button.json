@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_button_standard_buttons",
+  "info": {
+    "displayName": "standard-button"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  }
+}

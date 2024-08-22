@@ -8,6 +8,12 @@ const nextConfig = {
                 port: process.env.NEXT_PUBLIC_BASE_URL_PORT,
                 pathname: '/uploads/**',
             },
+            {
+                protocol: 'https',
+                hostname: 'picsum.photos',
+                port: '',
+                pathname: '/**',
+            },
         ],
     },
 };

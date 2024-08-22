@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "blog_views",
+  "info": {
+    "singularName": "blog-view",
+    "pluralName": "blog-views",
+    "displayName": "blog_views",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "guest_ip": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "country": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "time_zone": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_blog_article_ids",
+  "info": {
+    "displayName": "article_Id"
+  },
+  "options": {},
+  "attributes": {
+    "identifier": {
+      "type": "string"
+    }
+  }
+}

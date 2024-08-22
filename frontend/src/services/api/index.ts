@@ -1,5 +1,12 @@
 import { IAboutContent, IAboutFilter } from '@/types/about';
 import { IAppMeta, IStructuredData } from '@/types/app-meta';
+import {
+    IArticle,
+    IArticleCategory,
+    IComment,
+    ICommentForm,
+} from '@/types/article';
+import { IBlogPage, IBlogSEO, IViewForm } from '@/types/blog';
 import { IPixels } from '@/types/common-types';
 import { IFooter } from '@/types/footer';
 import { IPortfolio, IPortfolioCategory } from '@/types/portfolio';
@@ -13,6 +20,18 @@ const environment = process.env.NODE_ENV;
 export const BASE_URL =
     environment === 'development' ? devBaseUrl : productionBaseUrl;
 
+export const endpoints = {
+    blogPage: '/api/blog',
+    articles: '/api/articles',
+    articleCategories: '/api/article-categories',
+    blogViews: '/api/blog-views',
+    blogMetadata: '/api/blog-meta',
+    articleViews: '/api/article-views',
+    articleComments: '/api/article-comments',
+    nextApi: {
+        createArticleComment: '/api/article-comment-route',
+    },
+};
 export type NavLink = {
     id: number;
     attributes: {
@@ -647,6 +666,397 @@ export async function getFooter(): Promise<StrapiResponse<IFooter>> {
         const url = new URL('/api/footer', BASE_URL);
         url.search = queryBuilder;
         const res = await fetch(url.href, { next: { revalidate: 1800 } });
+        const data = await res.json();
+
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export async function getBlogPage(): Promise<StrapiResponse<IBlogPage>> {
+    try {
+        const queryBuilder = qs.stringify({
+            populate: {
+                pagination_btn: {
+                    standard_button: '*',
+                },
+            },
+        });
+        const url = new URL(endpoints.blogPage, BASE_URL);
+        url.search = queryBuilder;
+
+        const res = await fetch(url.href);
+
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export async function blogMetadata(): Promise<StrapiResponse<IBlogSEO>> {
+    try {
+        const url = new URL(endpoints.blogMetadata, BASE_URL);
+        const queryBuilder = qs.stringify({
+            populate: {
+                seo: {
+                    metaImage: {
+                        fields: '*',
+                    },
+                },
+                metaSocial: {
+                    image: {
+                        fields: '*',
+                    },
+                },
+            },
+        });
+        url.search = queryBuilder;
+
+        const res = await fetch(url.href, {
+            next: { revalidate: 1800, tags: [endpoints.blogMetadata] },
+        });
+        const data = await res.json();
+
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export async function getArticleCategories(): Promise<
+    StrapiResponse<IArticleCategory[]>
+> {
+    try {
+        const url = new URL(endpoints.articleCategories, BASE_URL);
+
+        const res = await fetch(url.href);
+
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+export async function getArticles({
+    category,
+    limit = 4,
+    page = 1,
+}: {
+    category: string | null;
+    limit: number;
+    page: number;
+}): Promise<StrapiResponse<IArticle[]>> {
+    try {
+        const queryBuilderWithFilter = qs.stringify({
+            populate: {
+                tags: {
+                    populate: true,
+                },
+                publisher: {
+                    populate: {
+                        avatar: { fields: ['url', 'alternativeText'] },
+                    },
+                },
+                article_category: {
+                    populate: true,
+                },
+                thumbnail: {
+                    fields: ['url', 'alternativeText'],
+                },
+            },
+            filters: {
+                article_category: {
+                    normalized_name: {
+                        $eq: category,
+                    },
+                },
+            },
+        });
+
+        const queryBuilder = qs.stringify({
+            populate: {
+                tags: {
+                    populate: true,
+                },
+                publisher: {
+                    populate: {
+                        avatar: { fields: ['url', 'alternativeText'] },
+                    },
+                },
+                article_category: {
+                    populate: true,
+                },
+                thumbnail: {
+                    fields: ['url', 'alternativeText'],
+                },
+            },
+            pagination: {
+                page,
+                pageSize: limit,
+            },
+        });
+        const url = new URL(endpoints.articles, BASE_URL);
+        url.search =
+            !Boolean(category) || category === 'all'
+                ? queryBuilder
+                : queryBuilderWithFilter;
+
+        const res = await fetch(url.href);
+
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+export async function getArticleById(
+    id: number
+): Promise<StrapiResponse<IArticle>> {
+    try {
+        const queryBuilder = qs.stringify({
+            populate: {
+                tags: {
+                    populate: true,
+                },
+                publisher: {
+                    populate: {
+                        avatar: { fields: ['url', 'alternativeText'] },
+                    },
+                },
+                article_category: {
+                    populate: true,
+                },
+                thumbnail: {
+                    fields: ['url', 'alternativeText'],
+                },
+            },
+        });
+        const url = new URL(`${endpoints.articles}/${id}`, BASE_URL);
+        url.search = queryBuilder;
+        const res = await fetch(url.href);
+
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export async function getArticleMetadataById(
+    id: number
+): Promise<StrapiResponse<IArticle>> {
+    try {
+        const queryBuilder = qs.stringify({
+            fields: ['title', 'description'],
+            populate: {
+                thumbnail: {
+                    fields: '*',
+                },
+            },
+        });
+        const url = new URL(`${endpoints.articles}/${id}`, BASE_URL);
+        url.search = queryBuilder;
+        const res = await fetch(url.href);
+
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export async function addBlogView(viewForm: Omit<IViewForm, 'article_id'>) {
+    try {
+        const url = new URL(endpoints.blogViews, BASE_URL);
+        const res = fetch(url.href, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ data: viewForm }),
+        });
+        const data = (await res).json();
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+export async function getBlogViewByIP(ip: string) {
+    try {
+        const queryBuilder = qs.stringify({
+            filters: {
+                guest_ip: {
+                    $eq: ip,
+                },
+            },
+        });
+        const url = new URL(endpoints.blogViews, BASE_URL);
+        url.search = queryBuilder;
+
+        const res = fetch(url.href);
+        const data = (await res).json();
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+export async function addArticleView(
+    viewForm: IViewForm & { article_id: { identifier: string }[] }
+) {
+    try {
+        const url = new URL(endpoints.articleViews, BASE_URL);
+        const res = fetch(url.href, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ data: viewForm }),
+        });
+        const data = (await res).json();
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+export async function updateArticleView(
+    viewForm: IViewForm & { article_id: { identifier: string }[] }
+) {
+    try {
+        const url = new URL(endpoints.articleViews, BASE_URL);
+        const res = fetch(url.href, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ data: viewForm }),
+        });
+        const data = (await res).json();
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+export async function getAllComments({
+    limit = 6,
+    page = 1,
+    articleId,
+}: {
+    page: number;
+    limit: number;
+    articleId: number;
+}): Promise<StrapiResponse<IComment[]>> {
+    try {
+        const queryBuilder = qs.stringify({
+            populate: {
+                replay: true,
+                author: {
+                    populate: {
+                        comment: true,
+                    },
+                },
+            },
+            pagination: {
+                page,
+                pageSize: limit,
+            },
+            filters: {
+                article_id: {
+                    $eq: articleId,
+                },
+                approvalStatus: {
+                    $eq: 'APPROVED',
+                },
+                blockedThread: {
+                    $eq: false,
+                },
+            },
+        });
+        const url = new URL(endpoints.articleComments, BASE_URL);
+        url.search = queryBuilder;
+
+        const res = await fetch(url.href, {
+            next: { tags: [endpoints.articleComments] },
+        });
+        const data = await res.json();
+
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+export async function addComment(comment: {
+    arg: ICommentForm;
+}): Promise<StrapiResponse<IComment>> {
+    try {
+        const queryBuilder = qs.stringify({
+            populate: {
+                replay: '*',
+                author: '*',
+            },
+        });
+        const url = new URL(endpoints.articleComments, BASE_URL);
+        url.search = queryBuilder;
+        const res = await fetch(url.href, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ data: comment.arg }),
+        });
+        const data = await res.json();
+
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+export async function createComment(commentForm: FormData) {
+    try {
+        const url = new URL(
+            endpoints.nextApi.createArticleComment,
+            window.location.origin
+        );
+        const response = await fetch(url.href, {
+            method: 'POST',
+            body: commentForm,
+        });
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+export async function createArticleView(
+    articleId: string
+): Promise<{ message: string; data: object }> {
+    try {
+        const queryBuilder = qs.stringify({
+            articleId,
+        });
+        const url = new URL('/api/article-views', window.location.origin);
+        url.search = queryBuilder;
+
+        const res = await fetch(url.href);
+        const data = await res.json();
+
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+export async function getArticleView(
+    articleId: string
+): Promise<{ message: string; data: { viewsCount: number } }> {
+    try {
+        const queryBuilder = qs.stringify({
+            articleId,
+        });
+        const url = new URL('/api/article-views', window.location.origin);
+        url.search = queryBuilder;
+
+        const res = await fetch(url.href);
         const data = await res.json();
 
         return data;

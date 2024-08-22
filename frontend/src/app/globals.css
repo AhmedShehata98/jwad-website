@@ -4,6 +4,9 @@
 
 @import '~react-image-gallery/styles/css/image-gallery.css';
 
+:root {
+    --article-list-gap: 3.5rem;
+}
 @layer base {
     html {
         scroll-behavior: smooth;
@@ -71,6 +74,58 @@
     }
     .nav-link__active {
         @apply after:w-full;
+    }
+    .article-list {
+        @apply relative grid w-full grid-cols-1 items-start justify-start border-y-2 border-t-neutral-800 pt-4 md:grid-cols-2;
+        gap: var(--article-list-gap);
+        padding-block: calc(var(--article-list-gap) / 2);
+    }
+    .article-card {
+        @apply flex;
+    }
+    .article-card__link {
+        @apply flex flex-1 items-start justify-start gap-5;
+    }
+    .article-card__layout {
+        position: relative;
+    }
+    .article-card__layout::before {
+        content: '';
+        position: absolute;
+        left: calc((var(--article-list-gap) / 2) * -1);
+        top: 50%;
+        transform: translateY(-50%);
+        width: 2px;
+        height: 100%;
+
+        @apply bg-neutral-800;
+    }
+    .article-card__layout::after {
+        content: '';
+        position: absolute;
+        bottom: calc((var(--article-list-gap) / 2) * -1);
+        right: 0;
+        width: 100%;
+        height: 2px;
+        @apply bg-neutral-800;
+    }
+    .article-card__layout:nth-child(even)::before {
+        display: none;
+    }
+    .article-card__layout:nth-child(odd)::after {
+        width: calc(100% + var(--article-list-gap));
+    }
+    .article-card__layout__one-card::after {
+        display: none;
+    }
+    .article-card__layout__one-card::before {
+        display: none;
+    }
+    .blog__sidebar {
+        @apply sticky top-8 flex w-1/4 flex-col items-center justify-center gap-3 transition-transform max-lg:items-start max-lg:justify-start max-lg:p-4 max-md:pt-12;
+    }
+    .blog__sidebar__tablet {
+        @apply max-tablet:fixed max-tablet:left-0 max-tablet:top-0 max-tablet:z-30 max-tablet:h-screen max-tablet:w-full max-tablet:translate-y-full max-tablet:bg-mainWhite;
     }
     .loader {
         width: 48px;
