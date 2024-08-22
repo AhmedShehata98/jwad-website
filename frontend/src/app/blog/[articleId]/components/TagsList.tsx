@@ -1,9 +1,8 @@
-import { IStrapiLinkResponse } from '@/types/common-types';
+import { IArticleTag } from '@/types/article';
 import Link from 'next/link';
-import React from 'react';
 
 type Props = {
-    tags: IStrapiLinkResponse[];
+    tags: IArticleTag[];
 };
 function TagsList({ tags }: Props) {
     return (
@@ -15,10 +14,10 @@ function TagsList({ tags }: Props) {
                 {tags?.map((tag, index) => (
                     <li key={tag.id}>
                         <Link
-                            href={`/blog?tag=${tag.url}` || '#'}
-                            className="inline-block rounded-full bg-neutral-200 px-6 py-3 text-sm font-medium capitalize text-neutral-800 hover:bg-neutral-300"
+                            href={`/blog?tag=${tag.normalized}` || '#'}
+                            className="inline-block rounded-full bg-neutral-200 px-6 py-3 text-sm font-medium capitalize text-neutral-800 shadow-sm hover:bg-neutral-300"
                         >
-                            {tag.label}
+                            {tag.name}
                         </Link>
                     </li>
                 ))}

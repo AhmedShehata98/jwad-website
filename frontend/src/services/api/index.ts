@@ -742,14 +742,16 @@ export async function getArticleCategories(): Promise<
 export async function getArticles({
     category,
     limit = 4,
+    tags,
     page = 1,
 }: {
     category: string | null;
+    tags: string | null;
     limit: number;
     page: number;
 }): Promise<StrapiResponse<IArticle[]>> {
     try {
-        const queryBuilderWithFilter = qs.stringify({
+        const queryBuilderWithCategoryFilter = qs.stringify({
             populate: {
                 tags: {
                     populate: true,
@@ -770,6 +772,31 @@ export async function getArticles({
                 article_category: {
                     normalized_name: {
                         $eq: category,
+                    },
+                },
+            },
+        });
+        const queryBuilderWithTagsFilter = qs.stringify({
+            populate: {
+                tags: {
+                    populate: true,
+                },
+                publisher: {
+                    populate: {
+                        avatar: { fields: ['url', 'alternativeText'] },
+                    },
+                },
+                article_category: {
+                    populate: true,
+                },
+                thumbnail: {
+                    fields: ['url', 'alternativeText'],
+                },
+            },
+            filters: {
+                tags: {
+                    normalized: {
+                        $contains: tags,
                     },
                 },
             },
@@ -798,10 +825,16 @@ export async function getArticles({
             },
         });
         const url = new URL(endpoints.articles, BASE_URL);
-        url.search =
-            !Boolean(category) || category === 'all'
-                ? queryBuilder
-                : queryBuilderWithFilter;
+
+        if (category === 'all') {
+            url.search = queryBuilder;
+        } else if (tags) {
+            url.search = queryBuilderWithTagsFilter;
+        } else if (category) {
+            url.search = queryBuilderWithCategoryFilter;
+        } else {
+            url.search = queryBuilder;
+        }
 
         const res = await fetch(url.href);
 

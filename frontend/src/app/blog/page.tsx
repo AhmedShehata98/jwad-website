@@ -18,7 +18,12 @@ export const revalidate = 1800;
 
 type Props = {
     params: any;
-    searchParams: { category: string; page: string; limit: string };
+    searchParams: {
+        category: string;
+        page: string;
+        limit: string;
+        tag: string;
+    };
 };
 
 export async function generateViewport() {
@@ -42,6 +47,7 @@ async function Blog(props: Props) {
     );
     const articles = await getArticles({
         category: props.searchParams.category,
+        tags: props.searchParams.tag,
         limit: parseInt(props.searchParams.limit || '4'),
         page: parseInt(props.searchParams.page || '1'),
     });
@@ -69,10 +75,12 @@ async function Blog(props: Props) {
                                 'border-t-2 pt-4',
                             'max-md:border-t-2 max-md:pt-4'
                         )}
-                        isDisabledPrevious={articles.meta.pagination.page <= 1}
+                        isDisabledPrevious={
+                            articles.meta?.pagination?.page <= 1
+                        }
                         isDisabledNext={
-                            articles.meta.pagination.page >=
-                            articles.meta.pagination.pageCount
+                            articles.meta?.pagination?.page >=
+                            articles.meta?.pagination?.pageCount
                         }
                         prevBtnTitle={
                             blogPage.data.attributes.pagination_btn[0].label

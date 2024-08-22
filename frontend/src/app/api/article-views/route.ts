@@ -23,10 +23,28 @@ export async function POST(request: NextRequest) {
         const clientLocation = await getClientLocation();
         const existingViews = await _getArticleById({ articleId });
 
-        console.log('#'.repeat(14));
-        console.log('existingViews', existingViews);
-
-        if (existingViews.data.length <= 0) {
+        if (existingViews.data.length >= 1) {
+            // update existing view collection
+            const updatedView = await _updateArticleViews({
+                articleId,
+                visits: existingViews.visits.concat([
+                    {
+                        ip_address: clientLocation.ip,
+                        country: clientLocation.country,
+                        city: clientLocation.city,
+                        time_zone: clientLocation.timezone,
+                    },
+                ]),
+            });
+            console.log('#'.repeat(14));
+            console.log('updatedView', updatedView);
+            return new Response('Updated client view with this article', {
+                status: 200,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+        } else {
             // create new view collection
             const addedView = await _addArticleViews({
                 articleId,
@@ -43,41 +61,6 @@ export async function POST(request: NextRequest) {
             console.log('addedView', addedView);
             return new Response('Added new client view with this article', {
                 status: 201,
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-        } else {
-            const isExistingClient = existingViews.data.visits.find(
-                (visit: any) => visit.ip_address === clientLocation.ip
-            );
-            console.log('#'.repeat(14));
-            console.log('isExistingClient', isExistingClient);
-            if (isExistingClient) {
-                return new Response('Client already viewed this article', {
-                    status: 403,
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
-            }
-
-            // update collection and add new client
-            await _updateArticleViews({
-                articleId,
-                visits: [
-                    ...existingViews.visits,
-                    {
-                        ip_address: clientLocation.ip,
-                        country: clientLocation.country,
-                        city: clientLocation.city,
-                        time_zone: clientLocation.timezone,
-                    },
-                ],
-            });
-
-            return new Response('Updated view and added client success', {
-                status: 200,
                 headers: {
                     'Content-Type': 'application/json',
                 },

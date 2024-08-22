@@ -69,13 +69,13 @@ function ArticleCard({
                         dir === 'row' ? 'w-3/5 max-md:w-full' : 'w-full'
                     )}
                 >
-                    <h3 className="mb-5 line-clamp-3 text-2xl font-bold text-neutral-800 max-lg:mb-2 max-lg:text-xl md:min-h-16">
+                    <h3 className="mb-3 line-clamp-2 text-2xl font-bold text-neutral-800 max-lg:mb-2 max-lg:text-xl md:min-h-16">
                         {article?.attributes?.title}
                     </h3>
-                    <small className="mb-4 line-clamp-4 text-sm font-medium text-neutral-500 md:min-h-20">
+                    <small className="mb-3 line-clamp-4 text-sm font-medium text-neutral-500 md:min-h-20">
                         {article?.attributes?.description}
                     </small>
-                    <div className="mt-7 flex items-center justify-start gap-3">
+                    <div className="mt-5 flex items-center justify-start gap-3">
                         <figure className="h-10 w-10">
                             <Image
                                 src={'https://picsum.photos/120/121'}

@@ -1,7 +1,7 @@
 import DropdownButton, { DropdownOptions } from '@/components/DropdownButton';
 import { BASE_URL } from '@/services/api';
 import { twMerge } from '@jakxz/tw-classnames';
-import React, { HTMLAttributes } from 'react';
+import { HTMLAttributes } from 'react';
 import { CiFacebook, CiLinkedin } from 'react-icons/ci';
 import { FaXTwitter } from 'react-icons/fa6';
 import { IoLinkSharp, IoLogoWhatsapp } from 'react-icons/io5';

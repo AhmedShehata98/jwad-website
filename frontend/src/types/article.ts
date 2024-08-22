@@ -43,7 +43,7 @@ export interface IArticle {
         title: string;
         content: BlocksContent;
         thumbnail: { data: IStrapiImageResponse | null };
-        tags: IStrapiLinkResponse[];
+        tags: IArticleTag[];
         article_category: { data: IArticleCategory };
         publisher: { data: IPublisher };
         description: string;
@@ -53,6 +53,11 @@ export interface IArticle {
     };
 }
 
+export interface IArticleTag {
+    id: number;
+    name: string;
+    normalized: string;
+}
 interface Author {
     author_id: string;
     full_name: string;

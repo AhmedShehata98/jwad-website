@@ -1,8 +1,6 @@
 import { IComment } from '@/types/article';
-import React from 'react';
 import CommentCard from './CommentCard';
 import { TfiCommentAlt } from 'react-icons/tfi';
-import { FaRegClock } from 'react-icons/fa6';
 
 type Props = {
     comments: IComment[] | undefined;

@@ -1,14 +1,11 @@
-import { IStrapiLinkResponse } from '@/types/common-types';
-import Link from 'next/link';
-import React from 'react';
 import CommentCreateForm from './CommentCreateForm';
-import { IComment } from '@/types/article';
+import { IArticleTag, IComment } from '@/types/article';
 import CommentsList from './CommentsList';
 import ArticleControls from './ArticleControls';
 import TagsList from './TagsList';
 
 type Props = {
-    tags: Array<IStrapiLinkResponse>;
+    tags: Array<IArticleTag>;
     comments: IComment[] | undefined;
     articleId: string;
     commentsLength: number | undefined;
