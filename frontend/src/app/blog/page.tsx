@@ -8,6 +8,7 @@ import {
     getArticleCategories,
     getArticles,
     getBlogPage,
+    getLastCreatedArticle,
 } from '@/services/api';
 import { twMerge } from '@jakxz/tw-classnames';
 import useAddBlogViewr from '../hooks/useAddBlogViewr';
@@ -36,19 +37,15 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 async function Blog(props: Props) {
-    const [blogPage, articleCategories] = await Promise.all([
-        getBlogPage(),
-        getArticleCategories(),
-    ]);
+    const [blogPage, articleCategories, lastCreatedArticle] = await Promise.all(
+        [getBlogPage(), getArticleCategories(), getLastCreatedArticle()]
+    );
     const articles = await getArticles({
         category: props.searchParams.category,
         limit: parseInt(props.searchParams.limit || '4'),
         page: parseInt(props.searchParams.page || '1'),
     });
     useAddBlogViewr();
-    console.log(props);
-    console.log(articles.meta.pagination);
-
 
     return (
         <main className="flex min-h-screen w-full flex-col items-center justify-start">
@@ -60,7 +57,10 @@ async function Blog(props: Props) {
             <section className="app-container mb-5 flex items-start justify-between gap-8">
                 <Sidebar categories={articleCategories.data} />
                 <div className="flex w-full flex-col items-start justify-start gap-6">
-                    <BlogsList articles={articles.data} />
+                    <BlogsList
+                        articles={articles.data}
+                        lastCreatedArticle={lastCreatedArticle.data}
+                    />
                     <PaginationButtons
                         className={twMerge(
                             'border-neutral-800',

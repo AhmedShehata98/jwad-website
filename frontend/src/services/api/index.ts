@@ -811,6 +811,49 @@ export async function getArticles({
         throw error;
     }
 }
+export async function getLastCreatedArticle(): Promise<
+    StrapiResponse<IArticle[]>
+> {
+    try {
+        const queryBuilder = qs.stringify({
+            sort: 'createdAt:desc',
+            populate: {
+                publisher: {
+                    populate: {
+                        avatar: { fields: ['url', 'alternativeText'] },
+                    },
+                },
+                article_category: {
+                    populate: true,
+                },
+                thumbnail: {
+                    fields: ['url', 'alternativeText'],
+                },
+            },
+            fields: [
+                'title',
+                'description',
+                'publishedAt',
+                'createdAt',
+                'updatedAt',
+            ],
+            pagination: {
+                page: 1,
+                pageSize: 1,
+            },
+        });
+        const url = new URL(endpoints.articles, BASE_URL);
+        url.search = queryBuilder;
+
+        const res = await fetch(url.href);
+        const data = await res.json();
+
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
 export async function getArticleById(
     id: number
 ): Promise<StrapiResponse<IArticle>> {

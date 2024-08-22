@@ -7,11 +7,12 @@ import { mapArticleToCardData } from '@/utils/map-article-data';
 
 type Props = {
     articles: IArticle[];
+    lastCreatedArticle: IArticle[];
 };
-function BlogsList({ articles }: Props) {
+function BlogsList({ articles, lastCreatedArticle }: Props) {
     return (
         <section className="flex w-full flex-col items-start justify-start gap-[calc(var(--article-list-gap)/2)]">
-            {articles?.slice(0, 1)?.map((article: IArticle) => {
+            {lastCreatedArticle?.map((article: IArticle) => {
                 return (
                     <ArticleCard
                         key={article.id}
