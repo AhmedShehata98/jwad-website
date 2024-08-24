@@ -64,6 +64,11 @@ async function Blog(props: Props) {
                 <Sidebar categories={articleCategories.data} />
                 <div className="flex w-full flex-col items-start justify-start gap-6">
                     <BlogsList
+                        isHasFilters={Boolean(
+                            (props.searchParams.category ||
+                                props.searchParams.tag) &&
+                                props.searchParams.category !== 'all'
+                        )}
                         articles={articles.data}
                         lastCreatedArticle={lastCreatedArticle.data}
                     />

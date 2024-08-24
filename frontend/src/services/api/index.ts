@@ -13,12 +13,17 @@ import { IPortfolio, IPortfolioCategory } from '@/types/portfolio';
 import { SnapchatPixel } from '@/types/snapchat-pixel';
 import qs from 'qs';
 
-const productionBaseUrl = `${process.env.NEXT_PUBLIC_BASE_URL_PROTOCOL}://${process.env.NEXT_PUBLIC_BASE_URL}`;
-const devBaseUrl = `${process.env.NEXT_PUBLIC_BASE_URL_PROTOCOL}://${process.env.NEXT_PUBLIC_BASE_URL}:${process.env.NEXT_PUBLIC_BASE_URL_PORT}`;
+const productionBaseUrl = `${process.env.NEXT_PUBLIC_STRAPI_BASE_URL_PROTOCOL}://${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}`;
+const devBaseUrl = `${process.env.NEXT_PUBLIC_STRAPI_BASE_URL_PROTOCOL}://${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}:${process.env.NEXT_PUBLIC_STRAPI_BASE_URL_PORT}`;
 const environment = process.env.NODE_ENV;
 
 export const BASE_URL =
     environment === 'development' ? devBaseUrl : productionBaseUrl;
+
+export const WEBSITE_URL =
+    environment === 'development'
+        ? `${process.env.NEXT_PUBLIC_BASE_URL_PROTOCOL}://${process.env.NEXT_PUBLIC_BASE_URL}:${process.env.NEXT_PUBLIC_BASE_URL_PORT}`
+        : `${process.env.NEXT_PUBLIC_BASE_URL_PROTOCOL}://${process.env.NEXT_PUBLIC_BASE_URL}`;
 
 export const endpoints = {
     blogPage: '/api/blog',
@@ -1092,7 +1097,7 @@ export async function createComment(commentForm: FormData) {
     try {
         const url = new URL(
             endpoints.nextApi.createArticleComment,
-            window.location.origin
+            WEBSITE_URL || window.location.origin
         );
         const response = await fetch(url.href, {
             method: 'POST',
@@ -1111,10 +1116,13 @@ export async function createArticleView(
         const queryBuilder = qs.stringify({
             articleId,
         });
-        const url = new URL('/api/article-views', window.location.origin);
+        const url = new URL(
+            '/api/article-views',
+            WEBSITE_URL || window.location.origin
+        );
         url.search = queryBuilder;
 
-        const res = await fetch(url.href);
+        const res = await fetch(url.href, { method: 'POST' });
         const data = await res.json();
 
         return data;
@@ -1129,7 +1137,10 @@ export async function getArticleView(
         const queryBuilder = qs.stringify({
             articleId,
         });
-        const url = new URL('/api/article-views', window.location.origin);
+        const url = new URL(
+            '/api/article-views',
+            WEBSITE_URL || window.location.origin
+        );
         url.search = queryBuilder;
 
         const res = await fetch(url.href);

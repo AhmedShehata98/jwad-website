@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-08-22T10:56:54.850Z"
+    "x-generation-date": "2024-08-24T07:52:01.940Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1232,12 +1232,6 @@
                 ],
                 "example": "string or id"
               },
-              "tags": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/LinkHeroDescoverLinkComponent"
-                }
-              },
               "article_category": {
                 "oneOf": [
                   {
@@ -1262,6 +1256,12 @@
               },
               "description": {
                 "type": "string"
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ArticleTagsComponent"
+                }
               }
             }
           }
@@ -1942,12 +1942,6 @@
               }
             }
           },
-          "tags": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/LinkHeroDescoverLinkComponent"
-            }
-          },
           "article_category": {
             "type": "object",
             "properties": {
@@ -2332,32 +2326,6 @@
                                         }
                                       }
                                     },
-                                    "tags": {
-                                      "type": "array",
-                                      "items": {
-                                        "type": "object",
-                                        "properties": {
-                                          "id": {
-                                            "type": "number"
-                                          },
-                                          "label": {
-                                            "type": "string"
-                                          },
-                                          "url": {
-                                            "type": "string"
-                                          },
-                                          "snapchat_event": {
-                                            "type": "string"
-                                          },
-                                          "fb_event": {
-                                            "type": "string"
-                                          },
-                                          "tiktok_event": {
-                                            "type": "string"
-                                          }
-                                        }
-                                      }
-                                    },
                                     "article_category": {
                                       "type": "object",
                                       "properties": {
@@ -2394,6 +2362,23 @@
                                     },
                                     "description": {
                                       "type": "string"
+                                    },
+                                    "tags": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "id": {
+                                            "type": "number"
+                                          },
+                                          "normalized": {
+                                            "type": "string"
+                                          },
+                                          "name": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      }
                                     },
                                     "createdAt": {
                                       "type": "string",
@@ -2503,6 +2488,12 @@
           "description": {
             "type": "string"
           },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ArticleTagsComponent"
+            }
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -2573,28 +2564,16 @@
           }
         }
       },
-      "LinkHeroDescoverLinkComponent": {
+      "ArticleTagsComponent": {
         "type": "object",
         "properties": {
           "id": {
             "type": "number"
           },
-          "__component": {
+          "normalized": {
             "type": "string"
           },
-          "label": {
-            "type": "string"
-          },
-          "url": {
-            "type": "string"
-          },
-          "snapchat_event": {
-            "type": "string"
-          },
-          "fb_event": {
-            "type": "string"
-          },
-          "tiktok_event": {
+          "name": {
             "type": "string"
           }
         }
@@ -4224,32 +4203,6 @@
                           }
                         }
                       },
-                      "tags": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "number"
-                            },
-                            "label": {
-                              "type": "string"
-                            },
-                            "url": {
-                              "type": "string"
-                            },
-                            "snapchat_event": {
-                              "type": "string"
-                            },
-                            "fb_event": {
-                              "type": "string"
-                            },
-                            "tiktok_event": {
-                              "type": "string"
-                            }
-                          }
-                        }
-                      },
                       "article_category": {
                         "type": "object",
                         "properties": {
@@ -4551,6 +4504,23 @@
                       },
                       "description": {
                         "type": "string"
+                      },
+                      "tags": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number"
+                            },
+                            "normalized": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            }
+                          }
+                        }
                       },
                       "createdAt": {
                         "type": "string",
@@ -8152,18 +8122,6 @@
                 },
                 "label": {
                   "type": "string"
-                },
-                "url": {
-                  "type": "string"
-                },
-                "snapchat_event": {
-                  "type": "string"
-                },
-                "fb_event": {
-                  "type": "string"
-                },
-                "tiktok_event": {
-                  "type": "string"
                 }
               }
             }
@@ -10527,6 +10485,20 @@
           },
           "meta": {
             "type": "object"
+          }
+        }
+      },
+      "LinkHeroDescoverLinkComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
           }
         }
       },
@@ -19013,32 +18985,6 @@
                             }
                           }
                         },
-                        "tags": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "number"
-                              },
-                              "label": {
-                                "type": "string"
-                              },
-                              "url": {
-                                "type": "string"
-                              },
-                              "snapchat_event": {
-                                "type": "string"
-                              },
-                              "fb_event": {
-                                "type": "string"
-                              },
-                              "tiktok_event": {
-                                "type": "string"
-                              }
-                            }
-                          }
-                        },
                         "article_category": {
                           "type": "object",
                           "properties": {
@@ -19340,6 +19286,23 @@
                         },
                         "description": {
                           "type": "string"
+                        },
+                        "tags": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "normalized": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              }
+                            }
+                          }
                         },
                         "createdAt": {
                           "type": "string",

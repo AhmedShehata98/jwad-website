@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_article_tags",
+  "info": {
+    "displayName": "tags"
+  },
+  "options": {},
+  "attributes": {
+    "normalized": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}

@@ -1,14 +1,7 @@
 'use client';
-
 import { twMerge } from '@jakxz/tw-classnames';
-import Link from 'next/link';
-import {
-    useParams,
-    usePathname,
-    useRouter,
-    useSearchParams,
-} from 'next/navigation';
-import React, { HTMLAttributes, useCallback } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { HTMLAttributes, useCallback } from 'react';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 import { IoIosArrowRoundForward } from 'react-icons/io';
 

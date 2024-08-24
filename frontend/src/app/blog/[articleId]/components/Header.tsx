@@ -12,6 +12,7 @@ type Props = {
     publishedAt: string;
     articleId: string;
     commentsLength: number | undefined;
+    articleViews: number | undefined;
     onOpenComments: () => void;
 };
 
@@ -20,6 +21,7 @@ function Header({
     publishedAt,
     publisher,
     articleId,
+    articleViews,
     commentsLength,
     onOpenComments,
 }: Props) {
@@ -54,8 +56,9 @@ function Header({
             </div>
             <ArticleControls
                 articleId={articleId}
-                onOpenComments={onOpenComments}
+                onOpenComments={() => {}}
                 commentsLength={commentsLength}
+                articleViews={articleViews}
             />
         </div>
     );

@@ -989,7 +989,6 @@ export interface ApiArticleArticle extends Schema.CollectionType {
     title: Attribute.Text;
     content: Attribute.Blocks;
     thumbnail: Attribute.Media<'images'>;
-    tags: Attribute.Component<'link.hero-descover-link', true>;
     article_category: Attribute.Relation<
       'api::article.article',
       'oneToOne',
@@ -1001,6 +1000,7 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       'api::publisher.publisher'
     >;
     description: Attribute.Text;
+    tags: Attribute.Component<'article.tags', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

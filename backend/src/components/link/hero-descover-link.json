@@ -8,18 +8,6 @@
   "attributes": {
     "label": {
       "type": "string"
-    },
-    "url": {
-      "type": "text"
-    },
-    "snapchat_event": {
-      "type": "string"
-    },
-    "fb_event": {
-      "type": "string"
-    },
-    "tiktok_event": {
-      "type": "string"
     }
   }
 }

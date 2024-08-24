@@ -9,6 +9,7 @@ type Props = {
     comments: IComment[] | undefined;
     articleId: string;
     commentsLength: number | undefined;
+    articleViews: number | undefined;
     revalidateArticleComments: () => void;
 };
 function Footer({
@@ -16,6 +17,7 @@ function Footer({
     comments,
     articleId,
     commentsLength,
+    articleViews,
     revalidateArticleComments,
 }: Props) {
     return (
@@ -26,6 +28,7 @@ function Footer({
                 articleId={articleId}
                 onOpenComments={() => {}}
                 commentsLength={commentsLength}
+                articleViews={articleViews}
             />
             <CommentCreateForm
                 revalidateArticleComments={revalidateArticleComments}

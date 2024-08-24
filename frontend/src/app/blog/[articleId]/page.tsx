@@ -44,7 +44,9 @@ function Article({ params, searchParams }: Props) {
                 articleId: parseInt(params.articleId),
             })
     );
-    // useAddArticleViewer(params.articleId);
+    const { articleViews, isLoadingArticleViews } = useAddArticleViewer(
+        params.articleId
+    );
 
     const revalidateArticleComments = useCallback(() => {
         setCommentRevalidate((p) => !p);
@@ -73,6 +75,7 @@ function Article({ params, searchParams }: Props) {
                     }}
                     onOpenComments={() => setOpenComments(true)}
                     commentsLength={commentsList?.meta.pagination.total}
+                    articleViews={articleViews}
                 />
                 <Content
                     thumbnail={articleData.data.attributes.thumbnail}
@@ -84,6 +87,7 @@ function Article({ params, searchParams }: Props) {
                     articleId={params.articleId}
                     revalidateArticleComments={revalidateArticleComments}
                     commentsLength={commentsList?.meta.pagination.total}
+                    articleViews={articleViews}
                 />
             </section>
 

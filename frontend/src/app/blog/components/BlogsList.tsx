@@ -1,34 +1,35 @@
-import React from 'react';
 import ArticleCard from './ArticleCard';
 import { twMerge } from '@jakxz/tw-classnames';
-import { IArticle, IArticleCard } from '@/types/article';
-import { formatDate } from '@/utils/date-format';
+import { IArticle } from '@/types/article';
 import { mapArticleToCardData } from '@/utils/map-article-data';
 
 type Props = {
     articles: IArticle[];
+    isHasFilters: boolean;
     lastCreatedArticle: IArticle[];
 };
-function BlogsList({ articles, lastCreatedArticle }: Props) {
+function BlogsList({ articles, isHasFilters, lastCreatedArticle }: Props) {
     return (
         <section className="flex w-full flex-col items-start justify-start gap-[calc(var(--article-list-gap)/2)]">
-            {lastCreatedArticle?.map((article: IArticle) => {
-                return (
-                    <ArticleCard
-                        key={article.id}
-                        dir="row"
-                        fullWidth
-                        className="max-md:w-full"
-                        article={mapArticleToCardData(article)}
-                    />
-                );
-            })}
+            {!isHasFilters &&
+                lastCreatedArticle?.map((article: IArticle) => {
+                    return (
+                        <ArticleCard
+                            key={article.id}
+                            dir="row"
+                            fullWidth
+                            className="max-md:w-full"
+                            article={mapArticleToCardData(article)}
+                        />
+                    );
+                })}
 
             <ul
                 className={twMerge(
                     'article-list',
                     (articles?.length <= 0 || !articles) &&
-                        'flex items-center justify-center'
+                        'flex items-center justify-center',
+                    isHasFilters && 'border-t-0 !pt-0'
                 )}
             >
                 {(articles?.length <= 0 || !articles) && (

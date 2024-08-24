@@ -14,6 +14,7 @@ import { toast } from 'react-toastify';
 type Props = HTMLAttributes<HTMLDivElement> & {
     onOpenComments: () => void;
     articleId: string;
+    articleViews: number | undefined;
     commentsLength: number | undefined;
 };
 function ArticleControls({
@@ -21,6 +22,7 @@ function ArticleControls({
     onOpenComments,
     className,
     commentsLength,
+    articleViews,
     ...rest
 }: Props) {
     const articleUrl = `${BASE_URL}/blog/${articleId}`;
@@ -141,7 +143,7 @@ function ArticleControls({
                     className="text-neutral-500 group-hover:text-neutral-800"
                 />
                 <small className="font-medium text-neutral-800 group-hover:font-bold">
-                    4221
+                    {articleViews || 0}
                 </small>
             </button>
             <DropdownButton

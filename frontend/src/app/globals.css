@@ -76,12 +76,12 @@
         @apply after:w-full;
     }
     .article-list {
-        @apply relative grid w-full grid-cols-1 items-start justify-start border-y-2 border-t-neutral-800 pt-4 md:grid-cols-2;
+        @apply relative grid min-h-screen w-full grid-cols-1 items-start justify-start border-t-2 border-t-neutral-800 pt-4 md:grid-cols-2;
         gap: var(--article-list-gap);
         padding-block: calc(var(--article-list-gap) / 2);
     }
     .article-card {
-        @apply flex;
+        @apply flex shadow;
     }
     .article-card__link {
         @apply flex flex-1 items-start justify-start gap-5;

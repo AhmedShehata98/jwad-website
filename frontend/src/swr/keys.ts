@@ -12,4 +12,5 @@ export const swrKeys = {
     articleComments: endpoints.articleComments,
     addArticleComments: `${endpoints.articleComments}-add`,
     articlesList: endpoints.articles,
+    articleViews: endpoints.articleViews,
 };

@@ -1,3 +1,4 @@
+import { IArticle } from './article';
 import { ISeoSocialMeta, Seo } from './seo-types';
 
 export interface IBlogPage {
@@ -27,4 +28,19 @@ export interface IViewForm {
     city: string;
     time_zone: string;
     article_id: { identifier: string }[];
+}
+
+export interface IVisits {
+    ip_address: string;
+    country: string;
+    city: string;
+    time_zone: string;
+}
+export interface IArticleView {
+    article: IArticle;
+    visits: IVisits[];
+}
+export interface IArticleViewForm {
+    article: string;
+    visits: IVisits[];
 }

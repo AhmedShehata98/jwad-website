@@ -26,11 +26,6 @@
         "images"
       ]
     },
-    "tags": {
-      "type": "component",
-      "repeatable": true,
-      "component": "link.hero-descover-link"
-    },
     "article_category": {
       "type": "relation",
       "relation": "oneToOne",
@@ -44,6 +39,12 @@
     },
     "description": {
       "type": "text"
+    },
+    "tags": {
+      "displayName": "tags",
+      "type": "component",
+      "repeatable": true,
+      "component": "article.tags"
     }
   }
 }

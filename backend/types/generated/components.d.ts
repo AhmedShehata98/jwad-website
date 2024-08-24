@@ -59,10 +59,6 @@ export interface LinkHeroDescoverLink extends Schema.Component {
   };
   attributes: {
     label: Attribute.String;
-    url: Attribute.Text;
-    snapchat_event: Attribute.String;
-    fb_event: Attribute.String;
-    tiktok_event: Attribute.String;
   };
 }
 
@@ -218,6 +214,17 @@ export interface ArticleCommentsArticleCommentAuthor extends Schema.Component {
   };
 }
 
+export interface ArticleTags extends Schema.Component {
+  collectionName: 'components_article_tags';
+  info: {
+    displayName: 'tags';
+  };
+  attributes: {
+    normalized: Attribute.String;
+    name: Attribute.String;
+  };
+}
+
 export interface ArticleArticleVisit extends Schema.Component {
   collectionName: 'components_article_article_visits';
   info: {
@@ -249,6 +256,7 @@ declare module '@strapi/types' {
       'blog.article-id': BlogArticleId;
       'article-comments.comment': ArticleCommentsComment;
       'article-comments.article-comment-author': ArticleCommentsArticleCommentAuthor;
+      'article.tags': ArticleTags;
       'article.article-visit': ArticleArticleVisit;
     }
   }

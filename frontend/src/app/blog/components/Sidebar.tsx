@@ -18,7 +18,7 @@ function Sidebar({ categories }: Props) {
         <>
             <div
                 className={twMerge(
-                    'blog__sidebar__tablet blog__sidebar',
+                    'blog__sidebar__tablet blog__sidebar duration-500',
                     isShownCategory && 'max-tablet:translate-y-0'
                 )}
             >
@@ -33,43 +33,48 @@ function Sidebar({ categories }: Props) {
                     <h4 className="font-semibold">تصنيف المقالات</h4>
                 </div>
                 <ul className="grid w-full grid-flow-row gap-x-2 gap-y-2">
-                    {categories?.map((category) => (
-                        <li
-                            key={category.id}
-                            className="max-w-full overflow-x-hidden"
-                        >
-                            <Link
-                                href={{
-                                    search: `category=${category.attributes.normalized_name}`,
-                                }}
-                                scroll={false}
-                                className="flex max-w-full items-center justify-start text-neutral-800"
+                    {categories
+                        ?.sort((a, b) => a.id - b.id)
+                        .map((category) => (
+                            <li
+                                key={category.id}
+                                className="max-w-full overflow-x-hidden"
                             >
-                                <span
-                                    className={twMerge(
-                                        'transition-all duration-500',
-                                        searchParams.get('category') ===
-                                            category.attributes.normalized_name
-                                            ? 'translate-x-0 opacity-100'
-                                            : 'translate-x-20 opacity-0',
-                                        !searchParams.get('category') &&
-                                            category.attributes
-                                                .normalized_name === 'all' &&
-                                            'translate-x-0 opacity-100'
-                                    )}
+                                <Link
+                                    href={{
+                                        search: `category=${category.attributes.normalized_name}`,
+                                    }}
+                                    scroll={false}
+                                    className="flex max-w-full items-center justify-start text-neutral-800"
+                                    onClick={() => setIsShownCategory(false)}
                                 >
-                                    <VscDebugBreakpointData size={25} />
-                                </span>
-                                <p
-                                    className={twMerge(
-                                        'max-w-full -translate-x-3 truncate text-lg font-semibold transition-transform'
-                                    )}
-                                >
-                                    {category.attributes.name}
-                                </p>
-                            </Link>
-                        </li>
-                    ))}
+                                    <span
+                                        className={twMerge(
+                                            'transition-all duration-500',
+                                            searchParams.get('category') ===
+                                                category.attributes
+                                                    .normalized_name
+                                                ? 'translate-x-0 opacity-100'
+                                                : 'translate-x-20 opacity-0',
+                                            !searchParams.get('category') &&
+                                                category.attributes
+                                                    .normalized_name ===
+                                                    'all' &&
+                                                'translate-x-0 opacity-100'
+                                        )}
+                                    >
+                                        <VscDebugBreakpointData size={25} />
+                                    </span>
+                                    <p
+                                        className={twMerge(
+                                            'max-w-full -translate-x-3 truncate text-lg font-semibold transition-transform'
+                                        )}
+                                    >
+                                        {category.attributes.name}
+                                    </p>
+                                </Link>
+                            </li>
+                        ))}
                 </ul>
             </div>
             <button

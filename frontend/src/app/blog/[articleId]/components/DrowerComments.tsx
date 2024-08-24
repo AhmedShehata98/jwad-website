@@ -1,21 +1,14 @@
 'use client';
-
 import AppDrawer from '@/components/AppDrawer';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 import { IoIosSend } from 'react-icons/io';
-import ReCAPTCHA from 'react-google-recaptcha';
-import useRecaptcha from '@/app/hooks/useRecaptcha';
 import Turnstile from 'react-turnstile';
 import { addCommentAction } from '@/utils/server-actions';
 import CommentCard from './CommentCard';
-import useSWR from 'swr';
-import { swrKeys } from '@/swr/keys';
-import { getAllComments } from '@/services/api';
 import { useParams } from 'next/navigation';
 import { IComment } from '@/types/article';
-import { FaRegClock } from 'react-icons/fa6';
 
 type Props = {
     onClose: () => void;

@@ -1,22 +1,38 @@
 'use client';
-import { createArticleView } from '@/services/api';
-import { useEffect, useState } from 'react';
+import { createArticleView, getArticleView } from '@/services/api';
+import { swrKeys } from '@/swr/keys';
+import useSWR from 'swr';
 
-function useAddArticleViewer(articleId: string) {
-    const [articleViews, setArticleViews] = useState([]);
+function useAddArticleViewer(articleId: string): {
+    articleViews: number | undefined;
+    isLoadingArticleViews: boolean;
+} {
     if (!articleId) {
         console.error('PLEASE PROVIDE AN ARTICLE ID');
-        return;
     }
+    const {
+        data: articleViews,
+        isLoading,
+        mutate,
+    } = useSWR(swrKeys.articleViews, () => getArticleView(articleId), {
+        isPaused: () => !Boolean(articleId),
+    });
+    const { data, error } = useSWR(
+        'article-view',
+        () => createArticleView(articleId),
+        {
+            isPaused: () => !Boolean(articleId),
+            onSuccess: async () => mutate(),
+            focusThrottleInterval: 3_000_000,
+            refreshInterval: 3_000_000,
+            revalidateOnFocus: false,
+        }
+    );
 
-    useEffect(() => {
-        createArticleView(articleId)
-            .then(() => {
-                // setArticleViews;
-                console.log('ARTICLE VIEW OK .');
-            })
-            .catch((err) => console.error(err));
-    }, [createArticleView, articleId]);
+    return {
+        articleViews: articleViews?.data.viewsCount,
+        isLoadingArticleViews: isLoading,
+    };
 }
 
 export default useAddArticleViewer;
