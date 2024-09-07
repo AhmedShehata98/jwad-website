@@ -6,6 +6,13 @@
 
 :root {
     --article-list-gap: 3.5rem;
+    --container-default-width: 8rem;
+    --container-sm-width: 1rem;
+    --container-md-width: 2.5rem;
+    --container-tablet-width: 3rem;
+    --container-lg-width: 8rem;
+    --container-xl-width: 10rem;
+    --container-xxl-width: 18rem;
 }
 @layer base {
     html {
@@ -35,23 +42,38 @@
 }
 @layer components {
     .app-container {
-        width: calc(100% - 8rem);
+        width: calc(100% - var(--container-lg-width));
         margin-inline: auto;
         padding-inline: 2rem;
     }
+    @media (max-width: 2440px) {
+        .app-container {
+            width: calc(100% - var(--container-xxl-width));
+        }
+    }
+    @media (max-width: 1366px) {
+        .app-container {
+            width: calc(100% - var(--container-xl-width));
+        }
+    }
+    @media (max-width: 1280px) {
+        .app-container {
+            width: calc(100% - var(--container-lg-width));
+        }
+    }
     @media (max-width: 992px) {
         .app-container {
-            width: calc(100% - 3rem);
+            width: calc(100% - var(--container-tablet-width));
         }
     }
     @media (max-width: 768px) {
         .app-container {
-            width: calc(100% - 2.5rem);
+            width: calc(100% - var(--container-md-width));
         }
     }
     @media (max-width: 640px) {
         .app-container {
-            width: calc(100% - 1rem);
+            width: calc(100% - var(--container-sm-width));
             padding-inline: 1rem;
         }
     }
@@ -59,7 +81,37 @@
         @apply fixed overflow-hidden;
     }
     .app-header {
-        @apply app-container relative flex items-center justify-center py-2 after:absolute after:bottom-0 after:left-1/2 after:h-4 after:w-[calc(100%+1rem)] after:-translate-x-1/2 after:border-b after:border-b-[#ADADB1] after:content-[''] max-md:py-4 after:md:w-[calc(100%+2.5rem)] after:lg:w-[calc(100%+3rem)] after:xl:w-[calc(100%+8rem)];
+        @apply app-container relative flex items-center justify-center py-2 after:absolute after:bottom-0 after:left-1/2 after:h-4 after:-translate-x-1/2 after:border-b after:border-b-[#ADADB1] after:content-[''] max-md:py-4;
+    }
+    @media (max-width: 2440px) {
+        .app-header::after {
+            width: calc(100% + var(--container-xxl-width));
+        }
+    }
+    @media (max-width: 1366px) {
+        .app-header::after {
+            width: calc(100% + var(--container-xl-width));
+        }
+    }
+    @media (max-width: 1280px) {
+        .app-header::after {
+            width: calc(100% + var(--container-lg-width));
+        }
+    }
+    @media (max-width: 992px) {
+        .app-header::after {
+            width: calc(100% + var(--container-tablet-width));
+        }
+    }
+    @media (max-width: 768px) {
+        .app-header::after {
+            width: calc(100% + var(--container-md-width));
+        }
+    }
+    @media (max-width: 640px) {
+        .app-header::after {
+            width: calc(100% + calc(--container-sm-width));
+        }
     }
     .nav-links-mobile {
         @apply max-lg:pointer-events-none max-lg:fixed max-lg:left-0 max-lg:top-0 max-lg:z-30 max-lg:h-full max-lg:w-full max-lg:-translate-x-full max-lg:scale-90 max-lg:flex-col max-lg:bg-mainWhite;
@@ -164,6 +216,11 @@
         border: 5px solid transparent;
         @apply border-t-secondary;
     }
+}
+.image-gallery-slide > img {
+    max-height: calc(100vh - 340px) !important;
+    object-fit: cover;
+    object-position: center;
 }
 
 /* loader animations started */

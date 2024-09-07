@@ -36,13 +36,13 @@ const Hero = async () => {
                                     ?.data.attributes.alternativeText ||
                                 'patters-1.svg'
                             }
-                            className="ms-20 mt-3 max-tablet:hidden"
+                            className="ms-20 mt-3 max-tablet:mx-auto max-tablet:pt-3"
                         />
-                        <div className="mt-14 flex items-center justify-start gap-3 max-tablet:items-center max-tablet:justify-center max-md:flex-col max-md:gap-8">
+                        <div className="mt-14 flex items-center justify-start gap-3 max-tablet:items-center max-tablet:justify-center max-md:flex-col max-md:gap-4">
                             <AppAnchor
                                 href={
                                     heroItems.data.attributes
-                                        .discovery_link?.[0].url
+                                        .discovery_link?.[0].href
                                 }
                                 className="btn px-2 py-2 max-md:w-full"
                                 target="_blank"
@@ -123,7 +123,7 @@ const Hero = async () => {
                     </div>
                 </div>
 
-                <ul className="mt-14 grid w-full grid-cols-1 gap-11 max-md:hidden sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                <ul className="mt-14 grid w-full grid-cols-1 gap-11 max-md:gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                     {statisticsList.data?.map((statistic: any) => (
                         <li
                             key={statistic.id}

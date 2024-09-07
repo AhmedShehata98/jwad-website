@@ -3,7 +3,7 @@ import { getPortfolioCategories, getPortfolioList } from '@/services/api';
 import { IPortfolio } from '@/types/portfolio';
 import { imagePrefixURl } from '@/utils/image-prefix';
 import { twMerge } from '@jakxz/tw-classnames';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PortfolioGalleryCard from './PortfolioGalleryCard';
 import PortfolioCard from './PortfolioCard';
 import PortfolioVideoCard from './PortfolioVideoCard';
@@ -144,6 +144,9 @@ const PortfolioList = () => {
                                     key={portfolio.id}
                                     data={portfolio}
                                     length={imagesLength}
+                                    onOpenModal={() =>
+                                        handleOpenGalleryModal(portfolio)
+                                    }
                                 />
                             );
                         }
@@ -232,9 +235,24 @@ function GalleryModal({
     title: string;
     images: IStrapiImageResponse[];
 }) {
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+
+        return () => {
+            setMounted(false);
+        };
+    }, []);
+
     return (
-        <section className="fixed inset-0 z-50 flex items-center justify-center bg-stone-700 bg-opacity-50">
-            <div className="flex h-full w-full flex-col items-start justify-start gap-2 overflow-y-auto rounded-lg border bg-slate-700 p-3 py-4 shadow-2xl max-md:px-3 md:w-4/5">
+        <section
+            className={twMerge(
+                'fixed inset-0 z-50 flex items-center justify-center bg-stone-700 bg-opacity-50 transition-all duration-500',
+                !mounted && 'scale-110 opacity-10'
+            )}
+        >
+            <div className="flex h-fit w-full flex-col items-start justify-start gap-2 overflow-y-auto rounded-lg border border-slate-600 bg-slate-700 p-3 py-4 shadow-2xl max-md:px-3 md:w-4/5">
                 <span className="flex w-full items-center justify-between py-3">
                     <button
                         onClick={onClose}
@@ -247,7 +265,7 @@ function GalleryModal({
                         {title}
                     </p>
                 </span>
-                <div className="flex h-[85vh] w-full items-start justify-center overflow-y-auto rounded-lg bg-slate-800 py-4">
+                <div className="flex h-[81vh] w-full items-start justify-center overflow-y-auto rounded-lg bg-slate-800 py-4">
                     <ImageGallery
                         items={images?.map((img) => ({
                             original: imagePrefixURl(img.attributes.url),

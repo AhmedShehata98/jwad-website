@@ -23,7 +23,7 @@ const Offers = async () => {
                         {marketingService.data.attributes.subHeading}
                     </p>
                     <AppAnchor
-                        href={marketingService.data.attributes.link[0].url}
+                        href={marketingService.data.attributes.link[0].href}
                         className="btn mb-12 mt-3 w-fit px-3 py-2"
                         target="_blank"
                         rel={'noopener noreferrer'}

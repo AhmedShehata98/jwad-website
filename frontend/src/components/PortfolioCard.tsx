@@ -8,9 +8,10 @@ import { GrFormNextLink } from 'react-icons/gr';
 type Props = {
     data: IPortfolio;
     length: number;
+    onOpenModal: () => void;
 };
 
-function PortfolioCard({ data, length }: Props) {
+function PortfolioCard({ data, length, onOpenModal }: Props) {
     let imageWidth = 1;
 
     if (length >= 2) {
@@ -50,6 +51,7 @@ function PortfolioCard({ data, length }: Props) {
                 <button
                     type="button"
                     className="btn border-darkBlack bg-mainWhite px-3 py-1.5 font-medium capitalize text-darkBlack outline-mainWhite"
+                    onClick={onOpenModal}
                 >
                     <GrFormNextLink className="inline-block -rotate-45 text-2xl" />
                     {data.attributes.link?.[0].label}

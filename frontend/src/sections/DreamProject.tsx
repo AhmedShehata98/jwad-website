@@ -2,8 +2,6 @@ import AppAnchor from '@/components/AppAnchor';
 import { getYourDreamProject } from '@/services/api';
 import { imagePrefixURl } from '@/utils/image-prefix';
 import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
 
 const DreamProject = async () => {
     const yourDreamProject = await getYourDreamProject();
@@ -21,7 +19,7 @@ const DreamProject = async () => {
                     {yourDreamProject.data.attributes.subHeading}
                 </p>
                 <AppAnchor
-                    href={yourDreamProject.data.attributes.link[0].url}
+                    href={yourDreamProject.data.attributes.link[0].href}
                     className="btn mt-3 px-4 py-2 text-lg font-semibold max-md:w-2/3"
                     target="_blank"
                     rel={'noopener noreferrer'}
@@ -38,7 +36,6 @@ const DreamProject = async () => {
                 >
                     {yourDreamProject.data.attributes.link[0].label}
                 </AppAnchor>
-
             </span>
             <div className="relative">
                 <Image
