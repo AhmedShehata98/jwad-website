@@ -3,7 +3,7 @@ import { getPortfolioCategories, getPortfolioList } from '@/services/api';
 import { IPortfolio } from '@/types/portfolio';
 import { imagePrefixURl } from '@/utils/image-prefix';
 import { twMerge } from '@jakxz/tw-classnames';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PortfolioGalleryCard from './PortfolioGalleryCard';
 import PortfolioCard from './PortfolioCard';
 import PortfolioVideoCard from './PortfolioVideoCard';
@@ -15,19 +15,27 @@ import SkeletonPortfolioCard from './SkeletonPortfolioCard';
 import useSWR from 'swr';
 import { swrKeys } from '@/swr/keys';
 import PortfolioVideoModal from './PortfolioVideoModal';
+import { BsDatabaseFillX } from 'react-icons/bs';
 
 const initialPaginationValues = {
     index: 1,
     limit: 4,
 };
-const PortfolioList = () => {
-    const [selectedCategory, setSelectedCategory] = useState('web-design');
-    const [paginationIndex, setPaginationIndex] = useState(
-        initialPaginationValues.index
-    );
-    const [paginationLimit, setPaginationLimit] = useState(
-        initialPaginationValues.limit
-    );
+
+const useInfinitePortfolioQuery = ({
+    paginationIndex,
+    paginationLimit,
+    selectedCategory,
+}: {
+    selectedCategory: string;
+    paginationIndex: number;
+    paginationLimit: number;
+}) => {
+    const [infiniteData, setInfiniteData] = useState<IPortfolio[]>([]);
+
+    const resetInfiniteData = useCallback(() => {
+        setInfiniteData([]);
+    }, []);
 
     const {
         data: portfolioList,
@@ -50,8 +58,67 @@ const PortfolioList = () => {
             refreshInterval: 1800000,
             focusThrottleInterval: 1800000,
             keepPreviousData: true,
+            onSuccess: (data) => {
+                setInfiniteData((prev) => [...prev, ...data.data]);
+            },
         }
     );
+
+    return {
+        data: {
+            meta: portfolioList?.meta,
+            data: infiniteData,
+        },
+        isLoadingPortfolioList,
+        errorPortfolioList,
+        resetInfiniteData,
+    };
+};
+
+const PortfolioList = () => {
+    const [selectedCategory, setSelectedCategory] = useState('web-design');
+    const [paginationIndex, setPaginationIndex] = useState(
+        initialPaginationValues.index
+    );
+    const [paginationLimit, setPaginationLimit] = useState(
+        initialPaginationValues.limit
+    );
+
+    // const {
+    //     data: portfolioList,
+    //     isLoading: isLoadingPortfolioList,
+    //     error: errorPortfolioList,
+    // } = useSWR(
+    //     [
+    //         swrKeys.portfolioList,
+    //         selectedCategory,
+    //         paginationIndex,
+    //         paginationLimit,
+    //     ],
+    //     () =>
+    //         getPortfolioList({
+    //             query: selectedCategory,
+    //             limit: paginationLimit,
+    //             offset: paginationIndex,
+    //         }),
+    //     {
+    //         refreshInterval: 1800000,
+    //         focusThrottleInterval: 1800000,
+    //         keepPreviousData: true,
+    //     }
+    // );
+
+    const {
+        data,
+        errorPortfolioList,
+        isLoadingPortfolioList,
+        resetInfiniteData,
+    } = useInfinitePortfolioQuery({
+        paginationIndex,
+        paginationLimit,
+        selectedCategory,
+    });
+
     const {
         data: portfolioCategories,
         isLoading: isLoadingPortfolioCategory,
@@ -65,7 +132,7 @@ const PortfolioList = () => {
     });
 
     const isDisabledSeeMoreButton =
-        portfolioList?.meta.pagination.pageCount === paginationIndex;
+        data.meta?.pagination.pageCount === paginationIndex;
     const [isShowVideoModal, setShowVideoModal] = useState(false);
     const [isShowGalleryModal, setShowGalleryModal] = useState(false);
     const [videoData, setVideoData] = useState<IPortfolio>();
@@ -76,6 +143,7 @@ const PortfolioList = () => {
         setSelectedCategory(target.title);
         setPaginationIndex(initialPaginationValues.index);
         setPaginationLimit(initialPaginationValues.limit);
+        resetInfiniteData();
     };
 
     const handleOpenVideoModal = (portfolio: IPortfolio) => {
@@ -127,14 +195,25 @@ const PortfolioList = () => {
                         </li>
                     ))}
             </ul>
-            <ul className="portfolio-list">
+            <ul className={twMerge('portfolio-list')}>
                 {isLoadingPortfolioList &&
                     randomArray.map((_, index) => (
                         <SkeletonPortfolioCard key={index} />
                     ))}
+                {data && data.data.length === 0 && (
+                    <div
+                        className="flex h-[40vh] w-full flex-col items-center justify-center gap-16 max-md:gap-8"
+                        style={{ gridColumn: '1 / -1' }}
+                    >
+                        <BsDatabaseFillX size={75} className="text-red-600" />
 
+                        <h2 className="text-center text-xl font-bold text-darkBlack">
+                            لا يوجد اي مشاريع هنا بعد لروئيتها
+                        </h2>
+                    </div>
+                )}
                 {!isLoadingPortfolioList &&
-                    portfolioList?.data?.map((portfolio) => {
+                    data?.data?.map((portfolio) => {
                         const imagesLength =
                             portfolio.attributes.image.data?.length || 0;
 
