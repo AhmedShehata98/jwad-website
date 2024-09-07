@@ -12,6 +12,7 @@ type Props = {
     buttonLabel: string;
 };
 function ContactUsForm({ buttonLabel, heading, inputsList }: Props) {
+    console.dir(inputsList, { depth: null });
     return (
         <div className="flex w-1/2 flex-col gap-3 bg-mainWhite p-12 shadow max-[770px]:p-6 max-md:w-full">
             <h4 className="mb-7 text-[32px] font-bold capitalize text-darkBlack">
@@ -19,7 +20,8 @@ function ContactUsForm({ buttonLabel, heading, inputsList }: Props) {
             </h4>
             <div className="mb-10 flex w-full flex-wrap items-center justify-start gap-4">
                 {inputsList?.map((input, idx) => {
-                    if (idx >= inputsList.length - 1) {
+                    if (input.type === 'textarea') {
+                        // if (idx >= inputsList.length - 1) {
                         return (
                             <span
                                 key={input.id}

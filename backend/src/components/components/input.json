@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_components_inputs",
+  "info": {
+    "displayName": "input"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "default_value": {
+      "type": "string"
+    },
+    "placeholder": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    }
+  }
+}

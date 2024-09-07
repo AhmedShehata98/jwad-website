@@ -139,6 +139,19 @@ export interface ContactUsContactUsContact extends Schema.Component {
   };
 }
 
+export interface ComponentsInput extends Schema.Component {
+  collectionName: 'components_components_inputs';
+  info: {
+    displayName: 'input';
+  };
+  attributes: {
+    label: Attribute.String;
+    default_value: Attribute.String;
+    placeholder: Attribute.String;
+    type: Attribute.String;
+  };
+}
+
 export interface ComponentsCoordination extends Schema.Component {
   collectionName: 'components_components_coordinations';
   info: {
@@ -250,6 +263,7 @@ declare module '@strapi/types' {
       'footer.footer-nav-links': FooterFooterNavLinks;
       'footer.ad': FooterAd;
       'contact-us.contact-us-contact': ContactUsContactUsContact;
+      'components.input': ComponentsInput;
       'components.coordination': ComponentsCoordination;
       'button.standard-button': ButtonStandardButton;
       'button.action-btn': ButtonActionBtn;

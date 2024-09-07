@@ -15,12 +15,6 @@
     "heading": {
       "type": "string"
     },
-    "contact_form": {
-      "type": "dynamiczone",
-      "components": [
-        "form.input"
-      ]
-    },
     "send": {
       "type": "dynamiczone",
       "components": [
@@ -45,6 +39,12 @@
       "type": "component",
       "repeatable": true,
       "component": "link.advanced-link"
+    },
+    "contact_form": {
+      "displayName": "input",
+      "type": "component",
+      "repeatable": true,
+      "component": "components.input"
     }
   }
 }

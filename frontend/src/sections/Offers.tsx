@@ -11,10 +11,10 @@ const Offers = async () => {
     const marketingServiceList = await getAllMarketingServices();
     return (
         <section
-            className="my-12 flex w-full items-center justify-between gap-6 bg-[#F7F7F7] p-8 max-md:flex-col max-sm:p-4"
+            className="my-12 flex w-full items-center justify-between gap-6 bg-[#F7F7F7] py-12 max-tablet:p-7 max-md:flex-col max-sm:p-5"
             id={marketingService.data.attributes.section_id}
         >
-            <div className="app-container flex items-center justify-between gap-8 max-[992px]:flex-col max-sm:m-0 max-sm:p-0">
+            <div className="app-container flex items-center justify-between gap-8 p-0 max-[992px]:flex-col max-sm:m-0 lg:items-stretch">
                 <div className="flex w-1/3 flex-col gap-4 rounded-2xl bg-mainWhite p-8 max-[992px]:w-full max-md:w-full">
                     <p className="text-[32px] font-semibold text-primary">
                         {marketingService.data.attributes.heading}

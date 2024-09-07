@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-08-24T07:52:01.940Z"
+    "x-generation-date": "2024-09-07T10:27:14.173Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -6303,16 +6303,6 @@
               "heading": {
                 "type": "string"
               },
-              "contact_form": {
-                "type": "array",
-                "items": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FormInputComponent"
-                    }
-                  ]
-                }
-              },
               "send": {
                 "type": "array",
                 "items": {
@@ -6342,6 +6332,12 @@
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/LinkAdvancedLinkComponent"
+                }
+              },
+              "contact_form": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ComponentsInputComponent"
                 }
               }
             }
@@ -6400,16 +6396,6 @@
           "heading": {
             "type": "string"
           },
-          "contact_form": {
-            "type": "array",
-            "items": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/FormInputComponent"
-                }
-              ]
-            }
-          },
           "send": {
             "type": "array",
             "items": {
@@ -6439,6 +6425,12 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/LinkAdvancedLinkComponent"
+            }
+          },
+          "contact_form": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ComponentsInputComponent"
             }
           },
           "createdAt": {
@@ -6508,34 +6500,6 @@
           },
           "meta": {
             "type": "object"
-          }
-        }
-      },
-      "FormInputComponent": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "number"
-          },
-          "__component": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "blockedThread": {
-            "type": "boolean"
-          },
-          "approvalStatus": {
-            "type": "string",
-            "enum": [
-              "APPROVED",
-              "REJECTED",
-              "PENDING"
-            ]
-          },
-          "author": {
-            "$ref": "#/components/schemas/ArticleCommentsArticleCommentAuthorComponent"
           }
         }
       },
@@ -6740,6 +6704,26 @@
             "type": "string"
           },
           "tiktok_event": {
+            "type": "string"
+          }
+        }
+      },
+      "ComponentsInputComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "label": {
+            "type": "string"
+          },
+          "default_value": {
+            "type": "string"
+          },
+          "placeholder": {
+            "type": "string"
+          },
+          "type": {
             "type": "string"
           }
         }

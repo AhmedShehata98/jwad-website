@@ -1304,13 +1304,13 @@ export interface ApiContactUsContactUs extends Schema.SingleType {
   };
   attributes: {
     heading: Attribute.String;
-    contact_form: Attribute.DynamicZone<['form.input']>;
     send: Attribute.DynamicZone<['button.action-btn']>;
     contact_list_heading: Attribute.String;
     form_heading: Attribute.String;
     section_id: Attribute.String;
     contact_list: Attribute.Component<'contact-us.contact-us-contact', true>;
     social_media: Attribute.Component<'link.advanced-link', true>;
+    contact_form: Attribute.Component<'components.input', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
